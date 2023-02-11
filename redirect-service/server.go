@@ -42,12 +42,12 @@ func redirect(writer http.ResponseWriter, request *http.Request) {
 
 func GetConnection() *sql.DB {
 
-	dbHost := "localhost"    // os.Getenv("DB_HOST")
-	dbPort := "5432"         // os.Getenv("DB_PORT")
-	dbUsername := "postgres" // os.Getenv("DB_USERNAME")
-	dbPass := "postgres"     // os.Getenv("DB_PASSWORD")
-	dbName := "url_shortner" // os.Getenv("DB_NAME")
-	dbSslMode := ""          // os.Getenv("DB_SSL_MODE")
+	dbHost :=  os.Getenv("DB_HOST")
+	dbPort :=  os.Getenv("DB_PORT")
+	dbUsername := os.Getenv("DB_USERNAME")
+	dbPass := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbSslMode := os.Getenv("DB_SSL_MODE")
 
 	if dbSslMode == "" {
 		dbSslMode = "disable"
