@@ -38,7 +38,7 @@ services:
 
   backend-service:
     container_name: url-shortner-backend-service
-    image: suraj362/url-shortner-backend-service:${build}
+    image: suraj362/url-shortner-backend-service:latest
     restart: unless-stopped
     environment:
       - DB_HOST=${DB_HOST}
@@ -71,7 +71,7 @@ services:
       - mynet
   redirect-service:
     container_name: url-shortner-redirect-service
-    image: suraj362/url-shortner-redirect-service:${build}
+    image: suraj362/url-shortner-redirect-service:latest
     restart: unless-stopped
     volumes:
       - redirectapp:/app
