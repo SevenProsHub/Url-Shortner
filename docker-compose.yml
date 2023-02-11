@@ -26,10 +26,10 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
-      - SERVER_PORT=${SERVER_PORT}
+      - SERVER_PORT=${BACKEND_SERVER_PORT}
       - REDIS_HOST=redis
     ports:
-      - "8080:8080"
+      - ${BACKEND_SERVER_PORT}:${BACKEND_SERVER_PORT}
     volumes:
       - backendapp:/app
     depends_on:
@@ -52,6 +52,17 @@ services:
     restart: unless-stopped
     volumes:
       - redirectapp:/app
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - PORT=${REDIRECT_SERVER_PORT}
+    ports:
+      - ${REDIRECT_SERVER_PORT}:${REDIRECT_SERVER_PORT}
+    expose:
+      - ${REDIRECT_SERVER_PORT}
     depends_on:
       - db
       - redis
@@ -66,3 +77,5 @@ networks:
 volumes:
   db:
     driver: local
+  backendapp:
+  redirectapp:
