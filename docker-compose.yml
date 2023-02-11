@@ -48,7 +48,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - KEYCLOAK_AUTH_URL=${KEYCLOAK_AUTH_URL}
       - KEYCLOAK_REALM=${KEYCLOAK_REALM}
-      - BACKEND_SERVER_PORT=${BACKEND_SERVER_PORT}
+      - SERVER_PORT=${BACKEND_SERVER_PORT}
       - REDIS_HOST=redis
     ports:
       - ${BACKEND_SERVER_PORT}:${BACKEND_SERVER_PORT}
@@ -88,9 +88,6 @@ services:
       - ${REDIRECT_SERVER_PORT}
     depends_on:
       - db
-      - keycloak
-      - redis
-      - backend-service
     networks:
       - mynet
 
