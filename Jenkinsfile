@@ -1,5 +1,5 @@
 pipeline {
-    // Where to run stuff.
+    // This is a pipeline using jenkins.
     agent any
     // What to run goes here
     environment {
