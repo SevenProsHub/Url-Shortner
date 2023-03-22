@@ -28,6 +28,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - SERVER_PORT=${BACKEND_SERVER_PORT}
       - REDIS_HOST=redis
+      - FRONTEND_URL=${FRONTEND_URL}
     ports:
       - ${BACKEND_SERVER_PORT}:${BACKEND_SERVER_PORT}
     volumes:
