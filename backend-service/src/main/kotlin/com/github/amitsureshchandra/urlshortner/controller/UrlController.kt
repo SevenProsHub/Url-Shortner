@@ -1,5 +1,5 @@
 package com.github.amitsureshchandra.urlshortner.controller
-
+import org.springframework.beans.factory.annotation.Value
 import com.github.amitsureshchandra.urlshortner.dto.response.RespMsg
 import com.github.amitsureshchandra.urlshortner.dto.request.UrlCreateDto
 import com.github.amitsureshchandra.urlshortner.dto.UserUrl
