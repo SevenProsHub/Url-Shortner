@@ -8,8 +8,6 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-    ports:
-      - ${DB_PORT}:${DB_PORT}
     expose:
       - ${DB_PORT}
     volumes:
@@ -29,8 +27,11 @@ services:
       - SERVER_PORT=${BACKEND_SERVER_PORT}
       - REDIS_HOST=redis
       - FRONTEND_URL=${FRONTEND_URL}
-    ports:
-      - ${BACKEND_SERVER_PORT}:${BACKEND_SERVER_PORT}
+    links:
+      - db
+      - redis
+    expose:
+      - ${BACKEND_SERVER_PORT}
     volumes:
       - backendapp:/app
     depends_on:
@@ -42,10 +43,19 @@ services:
     image: "redis:alpine"
     container_name: redis
     restart: unless-stopped
-    ports:
-      - "6379:6379"
     expose:
       - "6379"
+    networks:
+      - mynet
+  frontend-service:
+    container_name: suraj362/url-shortner-frontend-service:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - VUE_APP_API_URL=${VUE_APP_API_URL}
+    links:
+      - backend-service
     networks:
       - mynet
   redirect-service:
