@@ -51,9 +51,9 @@ class UrlController(val urlService: UrlService, val utilService: UrlUtil, val us
         }
     }
     
-    @GetMapping
+ /*   @GetMapping
     fun home(): ResponseEntity<RespMsg>{
         println(frontendUrl)
         return ResponseEntity.ok(RespMsg("short url service"))
-    }
+    } */
 }
