@@ -14,6 +14,9 @@ import javax.validation.Valid
 
 @RestController
 class UrlController(val urlService: UrlService, val utilService: UrlUtil, val userService: UserService) {
+    @Value("\${frontend-url}")
+    var frontendUrl: String? = null;
+
     @PostMapping("/api/v1/routes")
     fun createRoute(@RequestBody @Valid dto: UrlCreateDto, httpServletRequest: HttpServletRequest): ResponseEntity<RespMsg>{
         if(dto.url == ""){
@@ -50,6 +53,7 @@ class UrlController(val urlService: UrlService, val utilService: UrlUtil, val us
     
     @GetMapping
     fun home(): ResponseEntity<RespMsg>{
+        println(frontendUrl)
         return ResponseEntity.ok(RespMsg("short url service"))
     }
 }
