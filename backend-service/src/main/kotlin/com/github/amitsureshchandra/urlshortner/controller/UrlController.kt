@@ -1,5 +1,5 @@
 package com.github.amitsureshchandra.urlshortner.controller
-import org.springframework.beans.factory.annotation.Value
+
 import com.github.amitsureshchandra.urlshortner.dto.response.RespMsg
 import com.github.amitsureshchandra.urlshortner.dto.request.UrlCreateDto
 import com.github.amitsureshchandra.urlshortner.dto.UserUrl
@@ -14,9 +14,6 @@ import javax.validation.Valid
 
 @RestController
 class UrlController(val urlService: UrlService, val utilService: UrlUtil, val userService: UserService) {
-    @Value("\${frontend-url}")
-    var frontendUrl: String? = null;
-
     @PostMapping("/api/v1/routes")
     fun createRoute(@RequestBody @Valid dto: UrlCreateDto, httpServletRequest: HttpServletRequest): ResponseEntity<RespMsg>{
         if(dto.url == ""){
@@ -51,9 +48,8 @@ class UrlController(val urlService: UrlService, val utilService: UrlUtil, val us
         }
     }
     
- /*   @GetMapping
+    @GetMapping
     fun home(): ResponseEntity<RespMsg>{
-        println(frontendUrl)
         return ResponseEntity.ok(RespMsg("short url service"))
-    } */
+    }
 }

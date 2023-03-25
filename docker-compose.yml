@@ -16,7 +16,7 @@ services:
       - mynet
   backend-service:
     container_name: url-shortner-backend-service
-    image: suraj362/url-shortner-backend-service:latest
+    build: ./backend-service
     restart: unless-stopped
     environment:
       - DB_HOST=${DB_HOST}
@@ -50,7 +50,7 @@ services:
     networks:
       - mynet
   frontend-service:
-    image: suraj362/url-shortner-frontend-service:latest
+    build: ./frontend-service
     container_name: url-shortner-frontend-service
     restart: always
     ports:
